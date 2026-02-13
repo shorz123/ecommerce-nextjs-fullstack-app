@@ -13,9 +13,7 @@ export const Carousel = ({ products }: Props) => {
   const [current, setCurrent] = useState<number>(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % products.length);
-    }, 3000);
+    const interval = setInterval(() => { setCurrent((prev) => (prev + 1) % products.length); }, 3000);
 
     return () => clearInterval(interval);
   }, [products.length]);
@@ -50,3 +48,6 @@ export const Carousel = ({ products }: Props) => {
     </Card>
   );
 };
+
+
+//studied...........................................

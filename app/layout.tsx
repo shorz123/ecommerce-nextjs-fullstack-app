@@ -7,11 +7,7 @@ export const metadata: Metadata = {
   description: "Buy cool products",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="en">
       <body className="flex min-h-full flex-col bg-white">
@@ -23,3 +19,6 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+//studied. 

@@ -36,10 +36,10 @@ export default async function Home() {
           </div>
           <Image
             alt="Hero Image"
-            src={products.data[0].images[0]}
             className="rounded"
             width={450}
             height={450}
+            src={products.data[0].images[0]}
           />
         </div>
       </section>
@@ -49,3 +49,5 @@ export default async function Home() {
     </div>
   );
 }
+
+//STUDIED. 

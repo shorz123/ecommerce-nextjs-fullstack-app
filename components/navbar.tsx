@@ -12,8 +12,10 @@ import { Button } from "./ui/button";
 export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
   const { items } = useCartStore();
-  const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
+  const cartCount = items.reduce((acc, item) => acc + item.quantity, 0); //adds each cart item for a running total
 
+
+  //this adjusts mobible navbar view. 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -21,10 +23,10 @@ export const Navbar = () => {
       }
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize); //anytime user changes window size, the second parameter triggers 
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    return () => window.removeEventListener("resize", handleResize); // eventkistener cleans up runs when user leaves window. 
+  }, []); //empty array is part of useEffect, the return is part of the useEffect. 
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow">
@@ -87,3 +89,5 @@ export const Navbar = () => {
     </nav>
   );
 };
+
+//studied. 

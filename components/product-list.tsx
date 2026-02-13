@@ -4,6 +4,7 @@ import Stripe from "stripe";
 import { ProductCard } from "./product-card";
 import { useState } from "react";
 
+
 interface Props {
   products: Stripe.Product[];
 }
@@ -42,3 +43,6 @@ export const ProductList = ({ products }: Props) => {
     </div>
   );
 };
+
+
+//studied.... 
