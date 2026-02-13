@@ -9,13 +9,13 @@ import {
 import { useCartStore } from "@/store/cart-store";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
+
 export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
   const { items } = useCartStore();
-  const cartCount = items.reduce((acc, item) => acc + item.quantity, 0); //adds each cart item for a running total
 
+  const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
 
-  //this adjusts mobible navbar view. 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -23,19 +23,23 @@ export const Navbar = () => {
       }
     };
 
-    window.addEventListener("resize", handleResize); //anytime user changes window size, the second parameter triggers 
-
-    return () => window.removeEventListener("resize", handleResize); // eventkistener cleans up runs when user leaves window. 
-  }, []); //empty array is part of useEffect, the return is part of the useEffect. 
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow">
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
-        <Link href="/" className="hover:text-blue-600">
+        {/* Logo */}
+        <Link href="/" className="hover:text-blue-600 font-semibold">
           My Ecommerce
         </Link>
-        <div className="hidden md:flex space-x-6">
-          <Link href="/">Home</Link>
+
+        {/* Desktop Links (NO login here) */}
+        <div className="hidden md:flex space-x-6 items-center">
+          <Link href="/" className="hover:text-blue-600">
+            Home
+          </Link>
           <Link href="/products" className="hover:text-blue-600">
             Products
           </Link>
@@ -43,7 +47,17 @@ export const Navbar = () => {
             Checkout
           </Link>
         </div>
-        <div className="flex items-center space-x-4">
+
+        {/* Right side: Login + Cart + Mobile Toggle */}
+        <div className="flex items-center space-x-3">
+          {/* ✅ Login ALWAYS visible */}
+          <Link href="#">
+            <Button className="bg-gray-200 hover:bg-gray-300 text-gray-800 border border-gray-300 transition-colors">
+              Login
+            </Button>
+          </Link>
+
+          {/* Cart */}
           <Link href="/checkout" className="relative">
             <ShoppingCartIcon className="h-6 w-6" />
             {cartCount > 0 && (
@@ -52,6 +66,8 @@ export const Navbar = () => {
               </span>
             )}
           </Link>
+
+          {/* Mobile Toggle */}
           <Button
             variant="ghost"
             className="md:hidden"
@@ -65,9 +81,11 @@ export const Navbar = () => {
           </Button>
         </div>
       </div>
+
+      {/* Mobile Menu (NO login inside menu) */}
       {mobileOpen && (
         <nav className="md:hidden bg-white shadow-md">
-          <ul className="flex flex-col p-4 space-y-2">
+          <ul className="flex flex-col p-4 space-y-3">
             <li>
               <Link href="/" className="block hover:text-blue-600">
                 Home
@@ -89,5 +107,3 @@ export const Navbar = () => {
     </nav>
   );
 };
-
-//studied. 
